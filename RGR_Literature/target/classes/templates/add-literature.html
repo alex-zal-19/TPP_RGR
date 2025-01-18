@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Literature</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Literature</h1>
+    <form th:action="@{/literature/add}" th:object="${literature}" method="post" class="form-container">
+
+        <div class="form-group">
+            <label for="literatureName">Literature Name:</label>
+            <input type="text" id="literatureName" th:field="*{literatureName}" class="form-control" required />
+            <div th:if="${#fields.hasErrors('literatureName')}" th:errors="*{literatureName}" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <input type="text" id="department" th:field="*{department}" class="form-control" required />
+            <div th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="error"></div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="univGroup">University Group:</label>
+            <select id="univGroup" th:field="*{univGroup}" class="form-select" required>
+                <option value="" disabled selected>Select University Group</option>
+                <option th:each="group : ${univgroup}" th:value="${group.id}" th:text="${group.groupName}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('univGroup')}" th:errors="*{univGroup}" class="error"></div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Add Literature</button>
+    </form>
+
+
+    <a href="/literature" class="button back">Back to Literature</a>
+</div>
+</body>
+</html>

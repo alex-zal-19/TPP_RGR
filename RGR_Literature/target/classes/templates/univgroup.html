@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Univ Groups</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Univ Groups</h1>
+
+
+    <div th:if="${isAdmin}">
+        <a href="/univgroup/add" class="button">Add Univ Group</a>
+    </div>
+
+
+    <div th:if="${!isAdmin}" class="warning-message">
+        <p style="color: #b61d1d;">Note: Edit Access Restricted: Please Log In as Admin to Make Changes.</p>
+    </div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Group Name</th>
+            <th>Department</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="univgroup : ${univgroup}">
+            <td th:text="${univgroup.id}"></td>
+            <td th:text="${univgroup.groupName}"></td>
+            <td th:text="${univgroup.department.departmentName}"></td>
+            <td th:if="${isAdmin}" class="actions">
+
+                <a th:href="@{/univgroup/edit/{id}(id=${univgroup.id})}" class="button edit">Edit</a>
+
+                <a th:href="@{/univgroup/delete/{id}(id=${univgroup.id})}" class="button delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/home" class="button back">Back to Home</a>
+</div>
+</body>
+</html>

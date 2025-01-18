@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit University Group</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Edit University Group</h1>
+
+
+    <form th:action="@{/univgroup/update/{id}(id=${univgroup.id})}" th:object="${univgroup}" method="post" class="form-container">
+        <input type="hidden" th:field="*{id}" /> <!-- Скрытый идентификатор -->
+
+
+        <label for="groupName">Group Name:</label>
+        <input type="text" id="groupName" th:field="*{groupName}" required />
+        <div th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}" class="error"></div>
+
+
+        <label for="department">Department:</label>
+        <select id="department" th:field="*{department}" required>
+            <option th:each="department : ${department}" th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="error"></div>
+
+        <button type="submit" class="button">Update</button>
+    </form>
+
+
+    <a href="/univgroup" class="button back">Back to University Groups</a>
+</div>
+</body>
+</html>

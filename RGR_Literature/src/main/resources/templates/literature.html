@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Literatures</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Literatures</h1>
+
+
+    <div th:if="${isAdmin}">
+        <a href="/literature/add" class="button">Add Literature</a>
+    </div>
+
+
+    <div th:if="${!isAdmin}" class="warning-message">
+        <p style="color: #b61d1d;">Note: Edit Access Restricted: Please Log In as Admin to Make Changes..</p>
+    </div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Literature Name</th>
+            <th>Department</th>
+            <th>Univ Group</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="literature : ${literature}">
+            <td th:text="${literature.id}"></td>
+            <td th:text="${literature.literatureName}"></td>
+            <td th:text="${literature.department.departmentName}"></td>
+            <td th:text="${literature.univgroup.groupName}"></td>
+            <td th:if="${isAdmin}" class="actions">
+
+                <a th:href="@{/literature/edit/{id}(id=${literature.id})}" class="button edit">Edit</a>
+
+                <a th:href="@{/literature/delete/{id}(id=${literature.id})}" class="button delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/home" class="button back">Back to Home</a>
+</div>
+</body>
+</html>

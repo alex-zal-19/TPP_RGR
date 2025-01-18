@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Departments</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Departments</h1>
+
+    <div th:if="${isAdmin}">
+        <a href="/department/add" class="button">Add Department</a>
+    </div>
+
+    <div th:if="${!isAdmin}" class="warning-message">
+        <p style="color: #b61d1d;">Note: Edit Access Restricted: Please Log In as Admin to Make Changes.</p>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Department Name</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="department : ${department}">
+            <td th:text="${department.departmentId}"></td>
+            <td th:text="${department.departmentName}"></td>
+
+            <td th:if="${isAdmin}" class="actions">
+                <a th:href="@{/department/edit/{id}(id=${department.departmentId})}" class="button edit">Edit</a>
+                <a th:href="@{/department/delete/{id}(id=${department.departmentId})}" class="button delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/home" class="button back">Back to Home</a>
+</div>
+</body>
+</html>
