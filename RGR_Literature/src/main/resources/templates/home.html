@@ -6,29 +6,31 @@
     <style>
         .container {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             align-items: center;
             padding: 50px;
-            background: #ffffff;
+            background: #1e1e2f; /* Темно-синій фон */
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .text-content {
-            text-align: center; 
-            margin-bottom: 20px; 
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e0e0e0; /* Світлий текст */
         }
 
         .header {
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
+            color: #ffcc00; /* Жовтий акцент для заголовків */
         }
 
         .divider {
             position: relative;
             text-align: center;
             width: 100%;
-            margin: 20px 0; 
+            margin: 20px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -39,30 +41,30 @@
             content: "";
             flex: 1;
             height: 1px;
-            background: #ccc; 
+            background: #555; /* Темний сірий для ліній */
             margin: 0 10px;
         }
 
         .divider span {
             font-size: 1rem;
             font-weight: 500;
-            color: #888; 
-            background: #ffffff;
-            padding: 0 10px; 
+            color: #bdbdbd; /* Світло-сірий текст */
+            background: #1e1e2f; /* Темний фон */
+            padding: 0 10px;
         }
 
         .navigation {
             display: flex;
             justify-content: center;
-            gap: 20px; 
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
             .navigation {
-                flex-direction: column; 
+                flex-direction: column;
             }
             .button {
-                width: 100%; 
+                width: 100%;
             }
         }
     </style>
@@ -80,7 +82,7 @@
             <a th:href="@{/login}" class="button">Login</a>
         </div>
         <div th:if="${username}" class="user-info" style="display: flex; align-items: center;">
-            <p style="font-size: 1.2rem; font-weight: 500; color: #4a267c; margin-right: 10px;font-size: 1.1rem; font-weight: 600;">
+            <p style="font-size: 1.2rem; font-weight: 500; color: #bb8cfc; margin-right: 10px;font-size: 1.1rem; font-weight: 600;">
                 Welcome, <span th:text="${username}"></span>
             </p>
             <form th:action="@{/logout}" method="post" style="display: inline;">
